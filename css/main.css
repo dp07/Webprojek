@@ -13,7 +13,7 @@ body {
 
 .bg1 {
 	background:url(../image/bg.jpg);
-	min-height:585px;
+	min-height:570px;
 	background-size: cover;
 
 }
@@ -30,7 +30,8 @@ body {
 
 .panel {
 	border-color:#eee;
-	margin:40px;
+	margin:20px;
+	margin-left: 120px;
 	padding:20px;
 	font: 15px "Century Gothic", "Times Roman", sans-serif;
 }
@@ -40,8 +41,25 @@ font-family:'typo';
 }
 
 .header {
-	background:#0cb341;
-	height:70px;
+	background:#385985;
+/*	height:70px;*/
+}
+
+.header2 {
+	margin-left: 200px;
+	font-size: 20px;
+	margin-bottom: 10px;
+}
+
+.header2 a {
+	margin-right: 20px;
+	color: orange;
+	text-decoration: none;
+	font-weight: bold;
+}
+
+.header2 a:hover {
+	color: red;
 }
 
 .logo {
@@ -67,7 +85,7 @@ color:#202020;
 background:orange;
 font-size:15px;
 height:35px;
-margin:20px;
+margin:30px 20px 20px 20px;
 padding:10px;
 width:100px;
 }
@@ -76,15 +94,19 @@ width:100px;
 .sub
 {
 width:100%;
-background-color:#9acd32;
+background-color:#385985;
 font-size:20px;
-padding:2px;
+padding: 5px;
 margin-top:15px;
 margin-right:20px;
+font-weight: bold;
+color: orange;
+border-radius: 20px;
 }
+
 .sub:hover
 {
-color:#fff;
+color: red;
 }
 
 .footer
@@ -95,7 +117,7 @@ color: black;
 text-align:center;
 border-top:1px solid;
 border-color:#323232;
-background-color:#0cb341;
+background-color:#385985;
 }
 .footer a
 {
@@ -108,7 +130,7 @@ font: 15px "Century Gothic", "Times Roman", sans-serif;
 .footer a:hover
 {
 text-decoration:none;
-color:#9acd32;
+color:red;
 border-top:2px solid;
 border-color:orange;
 
