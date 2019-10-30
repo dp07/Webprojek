@@ -28,7 +28,7 @@
             <span class="logo">Ujian Online</span>
             <div class="header2">
              <a href="#" target="_blank">About</a>
-             <a href="#" target="_blank">Pesan</a>
+             <a href="feedback.php" target="_blank">Pesan</a>
             </div>
         </div>
       <div class="col-md-2 col-md-offset-4">
@@ -199,7 +199,7 @@
         <p>
 		<div class="row">
 		<div class="col-md-4">
-		 <img src="image/CAM00121.jpg" width=100 height=100 alt="Sunny Prakash Tiwari" class="img-rounded">
+		 <img src="image/" width=100 height=100 alt="Dany Pradana" class="img-rounded">
 		 </div>
 		 <div class="col-md-5">
 		<a href="#" style="color:#202020; font-family:'typo' ; font-size:18px" title="Find on Facebook">Dany Pradana</a>
