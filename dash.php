@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<title>Project Worlds || DASHBOARD </title>
+<title>DASHBOARD </title>
 <link  rel="stylesheet" href="css/bootstrap.min.css"/>
  <link  rel="stylesheet" href="css/bootstrap-theme.min.css"/>    
  <link rel="stylesheet" href="css/main.css">
@@ -74,7 +74,7 @@ echo '<span class="pull-right top title1" ><span class="log1"><span class="glyph
         <li <?php if($_GET['q']==0) echo'class="active"'; ?>><a href="dash.php?q=0">Home<span class="sr-only">(current)</span></a></li>
         <li <?php if(@$_GET['q']==1) echo'class="active"'; ?>><a href="dash.php?q=1">User</a></li>
 		<li <?php if(@$_GET['q']==2) echo'class="active"'; ?>><a href="dash.php?q=2">Ranking</a></li>
-		<li <?php if(@$_GET['q']==3) echo'class="active"'; ?>><a href="dash.php?q=3">Feedback</a></li>
+		<li <?php if(@$_GET['q']==3) echo'class="active"'; ?>><a href="dash.php?q=3">Pesan</a></li>
         <li class="dropdown <?php if(@$_GET['q']==4 || @$_GET['q']==5) echo'active"'; ?>">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Quiz<span class="caret"></span></a>
           <ul class="dropdown-menu">
@@ -152,8 +152,74 @@ echo '</table></div></div>';}
 
 <!--home closed-->
 <!--users start-->
-<?php if(@$_GET['q']==1) {
+<?php if(@$_GET['q']==1) { ?>
+  <div id="canvas-holder" style="width:40%;">
+    <canvas id="chart-area"></canvas>
+    <h4 style="margin-left: 195px; font-weight: bold; color: blue;">Gender</h4>
+  </div>
 
+  <?php
+  $sql = "SELECT COUNT(*) as num, gender FROM user GROUP BY gender";
+  $query = mysqli_query($con, $sql);
+    $data = [];
+    while($row = mysqli_fetch_array($query)){
+      $data[$row['gender']] = $row['num'];
+    }
+
+    $total = array_sum($data);
+    foreach ($data as $gender => $num) {
+      $data[$gender] = round($num*100/$total,2);
+    }
+
+  $color = ['red', 'orange', 'yellow',  'green','blue'];
+  
+ 
+  $str_value = implode(",", array_values($data));
+
+  $i = 0;
+  foreach($data as $jns_kel => $presentase){
+
+  $str_color[] = "window.chartColors.".$color[$i];
+  $str_jns_kel[] = $jns_kel;
+  $i++;
+  }
+  ?>
+  
+  <script src="https://www.chartjs.org/dist/2.9.3/Chart.min.js"></script>
+  <script src="https://www.chartjs.org/samples/latest/utils.js"></script>
+  <script>
+    
+
+    var config = {
+      type: 'pie',
+      data: {
+        datasets: [{
+          data: [
+            <?= $str_value; ?>
+          ],
+          backgroundColor: [
+            <?= implode(",", $str_color); ?>
+          ],
+          label: 'Dataset 1'
+        }],
+        labels: [
+          '<?= implode("','", $str_jns_kel); ?>'
+        ]
+      },
+      options: {
+        responsive: true
+      }
+    };
+
+    window.onload = function() {
+      var ctx = document.getElementById('chart-area').getContext('2d');
+      window.myPie = new Chart(ctx, config);
+    };
+  </script>
+
+
+
+<?php 
 $result = mysqli_query($con,"SELECT * FROM user") or die('Error');
 echo  '<div class="panel"><div class="table-responsive"><table class="table table-striped title1">
 <tr><td><b>S.N.</b></td><td><b>Name</b></td><td><b>Gender</b></td><td><b>College</b></td><td><b>Email</b></td><td><b>Mobile</b></td><td></td></tr>';
@@ -162,7 +228,7 @@ while($row = mysqli_fetch_array($result)) {
 	$name = $row['name'];
 	$mob = $row['mob'];
 	$gender = $row['gender'];
-    $email = $row['email'];
+  $email = $row['email'];
 	$college = $row['college'];
 
 	echo '<tr><td>'.$c++.'</td><td>'.$name.'</td><td>'.$gender.'</td><td>'.$college.'</td><td>'.$email.'</td><td>'.$mob.'</td>
