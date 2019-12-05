@@ -1,19 +1,35 @@
+<?php
+  include_once 'dbConnection.php';
+  session_start();
+  $email=$_SESSION['email'];
+  if(!isset($_SESSION['key'])){
+    if ($_SESSION['name'] != "Admin"){
+        session_destroy();
+        session_unset();
+        header("location:index.php");
+    }
+  }
+  else{
+    $name = $_SESSION['name'];;
+    include_once 'dbConnection.php';
+    echo '<span class="pull-right top title1" ><span class="log1"><span class="glyphicon glyphicon-user" aria-hidden="true"></span>&nbsp;&nbsp;&nbsp;&nbsp;Hello,</span> <a href="account.php" class="log log1">'.$name.'</a>&nbsp;|&nbsp;<a href="logout.php?q=account.php" class="log"><span class="glyphicon glyphicon-log-out" aria-hidden="true"></span>&nbsp;Signout</button></a></span>';
+  }
+?>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
-<meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<title>DASHBOARD </title>
-<link  rel="stylesheet" href="css/bootstrap.min.css"/>
- <link  rel="stylesheet" href="css/bootstrap-theme.min.css"/>    
- <link rel="stylesheet" href="css/main.css">
- <link  rel="stylesheet" href="css/font.css">
- <script src="js/jquery.js" type="text/javascript"></script>
-
-  <script src="js/bootstrap.min.js"  type="text/javascript"></script>
- 	<link href='http://fonts.googleapis.com/css?family=Roboto:400,700,300' rel='stylesheet' type='text/css'>
-
+    <title>DASHBOARD </title>
+    <link  rel="stylesheet" href="css/bootstrap.min.css"/>
+    <link  rel="stylesheet" href="css/bootstrap-theme.min.css"/>    
+    <link rel="stylesheet" href="css/main.css">
+    <link  rel="stylesheet" href="css/font.css">
+    <script src="js/jquery.js" type="text/javascript"></script>
+    <script src="js/bootstrap.min.js"  type="text/javascript"></script>
+ 	  <link href='http://fonts.googleapis.com/css?family=Roboto:400,700,300' rel='stylesheet' type='text/css'>
 <script>
 $(function () {
     $(document).on( 'scroll', function(){
@@ -29,30 +45,16 @@ $(function () {
         }
     });
 });</script>
+
 </head>
-
 <body  style="background:#eee;">
-<div class="header">
-<div class="row">
-<div class="col-lg-6">
-<span class="logo">Test Your Skill</span></div>
-<?php
- include_once 'dbConnection.php';
-session_start();
-$email=$_SESSION['email'];
-  if(!(isset($_SESSION['email']))){
-header("location:index.php");
-
-}
-else
-{
-$name = $_SESSION['name'];;
-
-include_once 'dbConnection.php';
-echo '<span class="pull-right top title1" ><span class="log1"><span class="glyphicon glyphicon-user" aria-hidden="true"></span>&nbsp;&nbsp;&nbsp;&nbsp;Hello,</span> <a href="account.php" class="log log1">'.$name.'</a>&nbsp;|&nbsp;<a href="logout.php?q=account.php" class="log"><span class="glyphicon glyphicon-log-out" aria-hidden="true"></span>&nbsp;Signout</button></a></span>';
-}?>
-
-</div></div>
+  <div class="header">
+    <div class="row">
+      <div class="col-lg-6">
+          <span class="logo">Test Your Skill</span>
+      </div>
+    </div>
+  </div>
 <!-- admin start-->
 
 <!--navigation menu-->
@@ -73,30 +75,31 @@ echo '<span class="pull-right top title1" ><span class="log1"><span class="glyph
       <ul class="nav navbar-nav">
         <li <?php if($_GET['q']==0) echo'class="active"'; ?>><a href="dash.php?q=0">Home<span class="sr-only">(current)</span></a></li>
         <li <?php if(@$_GET['q']==1) echo'class="active"'; ?>><a href="dash.php?q=1">User</a></li>
-		<li <?php if(@$_GET['q']==2) echo'class="active"'; ?>><a href="dash.php?q=2">Ranking</a></li>
-		<li <?php if(@$_GET['q']==3) echo'class="active"'; ?>><a href="dash.php?q=3"></a></li>
+		    <li <?php if(@$_GET['q']==2) echo'class="active"'; ?>><a href="dash.php?q=2">Ranking</a></li>
+		    <li <?php if(@$_GET['q']==3) echo'class="active"'; ?>><a href="dash.php?q=3"></a></li>
         <li class="dropdown <?php if(@$_GET['q']==4 || @$_GET['q']==5) echo'active"'; ?>">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Quiz<span class="caret"></span></a>
-          <ul class="dropdown-menu">
-            <li><a href="dash.php?q=4">Add Quiz</a></li>
-            <li><a href="dash.php?q=5">Remove Quiz</a></li>
-			
-          </ul>
+            <ul class="dropdown-menu">
+                <li><a href="dash.php?q=4">Add Quiz</a></li>
+              <li><a href="dash.php?q=5">Remove Quiz</a></li>
+            </ul>
       </ul>
+
           </div><!-- /.navbar-collapse -->
-  </div><!-- /.container-fluid -->
-</nav>
+      </div><!-- /.container-fluid -->
+    </nav>
+
 <!--navigation menu closed-->
-<div class="container"><!--container start-->
-<div class="row">
-<div class="col-md-12">
+    <div class="container"><!--container start-->
+        <div class="row">
+          <div class="col-md-12">
+
 <!--home start-->
-
-<?php if(@$_GET['q']==0) {
-
-$result = mysqli_query($con,"SELECT * FROM quiz ORDER BY date DESC") or die('Error');
-echo  '<div class="panel"><div class="table-responsive"><table class="table table-striped title1">
-<tr><td><b>S.N.</b></td><td><b>Topic</b></td><td><b>Total question</b></td><td><b>Max Point</b></td><td><b>Time limit</b></td><td></td></tr>';
+<?php 
+  if(@$_GET['q']==0){
+    $result = mysqli_query($con,"SELECT * FROM quiz ORDER BY date DESC") or die('Error');
+    echo  '<div class="panel"><div class="table-responsive"><table class="table table-striped title1">
+    <tr><td><b>S.N.</b></td><td><b>Topic</b></td><td><b>Total question</b></td><td><b>Max Point</b></td><td><b>Time limit</b></td><td></td></tr>';
 $c=1;
 while($row = mysqli_fetch_array($result)) {
 	$title = $row['title'];

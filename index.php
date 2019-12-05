@@ -1,3 +1,18 @@
+<?php   
+    include_once 'dbConnection.php';
+    session_start();
+
+    if(isset($_SESSION['key'])){
+      header('location:dash.php?q=0');
+    }
+    else if (isset($_SESSION['email'])){
+      header('location: account.php?q=1');
+    }
+   
+
+ ?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -27,8 +42,8 @@
         <div class="col-lg-6">
             <span class="logo">Ujian Online</span>
             <div class="header2">
-             <a href="#" target="_blank">About</a>
-             <a href="feedback.php" target="_blank">Pesan</a>
+             <a href="#" target="_blank"></a>
+             <a href="feedback.php" target="_blank"></a>
             </div>
         </div>
       <div class="col-md-2 col-md-offset-4">
