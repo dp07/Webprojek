@@ -2,29 +2,22 @@
 include_once 'dbConnection.php';
 session_start();
 $email=$_SESSION['email'];
-//delete feedback
-if(isset($_SESSION['key'])){
-if(@$_GET['fdid'] && $_SESSION['key']=='sunny7785068889') {
-$id=@$_GET['fdid'];
-$result = mysqli_query($con,"DELETE FROM feedback WHERE id='$id' ") or die('Error');
-header("location:dash.php?q=3");
-}
-}
 
 //delete user
 if(isset($_SESSION['key'])){
-if(@$_GET['demail'] && $_SESSION['key']=='sunny7785068889') {
-$demail=@$_GET['demail'];
+if($_GET['demail'] && $_SESSION['key']=='danypradana') {
+$demail=$_GET['demail'];
 $r1 = mysqli_query($con,"DELETE FROM rank WHERE email='$demail' ") or die('Error');
 $r2 = mysqli_query($con,"DELETE FROM history WHERE email='$demail' ") or die('Error');
 $result = mysqli_query($con,"DELETE FROM user WHERE email='$demail' ") or die('Error');
 header("location:dash.php?q=1");
 }
 }
+
 //remove quiz
 if(isset($_SESSION['key'])){
-if(@$_GET['q']== 'rmquiz' && $_SESSION['key']=='sunny7785068889') {
-$eid=@$_GET['eid'];
+if($_GET['q']== 'rmquiz' && $_SESSION['key']=='danypradana') {
+$eid=$_GET['eid'];
 $result = mysqli_query($con,"SELECT * FROM questions WHERE eid='$eid' ") or die('Error');
 while($row = mysqli_fetch_array($result)) {
 	$qid = $row['qid'];
@@ -41,7 +34,7 @@ header("location:dash.php?q=5");
 
 //add quiz
 if(isset($_SESSION['key'])){
-if(@$_GET['q']== 'addquiz' && $_SESSION['key']=='sunny7785068889') {
+if($_GET['q']== 'addquiz' && $_SESSION['key']=='danypradana') {
 $name = $_POST['name'];
 $name= ucwords(strtolower($name));
 $total = $_POST['total'];
@@ -59,10 +52,10 @@ header("location:dash.php?q=4&step=2&eid=$id&n=$total");
 
 //add question
 if(isset($_SESSION['key'])){
-if(@$_GET['q']== 'addqns' && $_SESSION['key']=='sunny7785068889') {
-$n=@$_GET['n'];
-$eid=@$_GET['eid'];
-$ch=@$_GET['ch'];
+if($_GET['q']== 'addqns' && $_SESSION['key']=='danypradana') {
+$n=$_GET['n'];
+$eid=$_GET['eid'];
+$ch=$_GET['ch'];
 
 for($i=1;$i<=$n;$i++)
  {
@@ -109,12 +102,12 @@ header("location:dash.php?q=0");
 }
 
 //quiz start
-if(@$_GET['q']== 'quiz' && @$_GET['step']== 2) {
-$eid=@$_GET['eid'];
-$sn=@$_GET['n'];
-$total=@$_GET['t'];
+if($_GET['q']== 'quiz' && $_GET['step']== 2) {
+$eid=$_GET['eid'];
+$sn=$_GET['n'];
+$total=$_GET['t'];
 $ans=$_POST['ans'];
-$qid=@$_GET['qid'];
+$qid=$_GET['qid'];
 $q=mysqli_query($con,"SELECT * FROM answer WHERE qid='$qid' " );
 while($row=mysqli_fetch_array($q) )
 {
@@ -170,7 +163,7 @@ if($sn != $total)
 $sn++;
 header("location:account.php?q=quiz&step=2&eid=$eid&n=$sn&t=$total")or die('Error152');
 }
-else if( $_SESSION['key']!='sunny7785068889')
+else if( $_SESSION['key']!='danypradana')
 {
 $q=mysqli_query($con,"SELECT score FROM history WHERE eid='$eid' AND email='$email'" )or die('Error156');
 while($row=mysqli_fetch_array($q) )
@@ -201,10 +194,10 @@ header("location:account.php?q=result&eid=$eid");
 }
 
 //restart quiz
-if(@$_GET['q']== 'quizre' && @$_GET['step']== 25 ) {
-$eid=@$_GET['eid'];
-$n=@$_GET['n'];
-$t=@$_GET['t'];
+if($_GET['q']== 'quizre' && $_GET['step']== 25 ) {
+$eid=$_GET['eid'];
+$n=$_GET['n'];
+$t=$_GET['t'];
 $q=mysqli_query($con,"SELECT score FROM history WHERE eid='$eid' AND email='$email'" )or die('Error156');
 while($row=mysqli_fetch_array($q) )
 {

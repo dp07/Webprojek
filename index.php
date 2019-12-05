@@ -28,7 +28,7 @@
       <script src="js/bootstrap.min.js"  type="text/javascript"></script>
  	    <link href='http://fonts.googleapis.com/css?family=Roboto:400,700,300' rel='stylesheet' type='text/css'>
         <?php if(@$_GET['w'])
-        {echo'<script>alert("'.@$_GET['w'].'");</script>';}
+        {echo'<script>alert("'.$_GET['w'].'");</script>';}
         ?>
         <script>
             function validateForm() {var y = document.forms["form"]["name"].value;  var letters = /^[A-Za-z]+$/;if (y == null || y == "") {alert("Name must be filled out.");return false;}var z =document.forms["form"]["college"].value;if (z == null || z == "") {alert("college must be filled out.");return false;}var x = document.forms["form"]["email"].value;var atpos = x.indexOf("@");
@@ -80,8 +80,8 @@
           </div>
       </div>
       </div>
-      <?php if(@$_GET['q7'])
-      { echo'<p style="color:red;font-size:15px;">'.@$_GET['q7'];}?>
+      <?php if($_GET['q7'])
+      { echo'<p style="color:red;font-size:15px;">'.$_GET['q7'];}?>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
         <button type="submit" class="btn btn-primary">Log in</button>
@@ -178,7 +178,7 @@
         </div>
       </div>
       <?php if(@$_GET['q7'])
-      { echo'<p style="color:red;font-size:15px;">'.@$_GET['q7'];}?>
+      { echo'<p style="color:red;font-size:15px;">'.$_GET['q7'];}?>
       <!-- Button -->
       <div class="form-group">
         <label class="col-md-12 control-label" for=""></label>
@@ -219,7 +219,7 @@
 		 <div class="col-md-5">
 		<a href="#" style="color:#202020; font-family:'typo' ; font-size:18px" title="Find on Facebook">Dany Pradana</a>
 		<h4 style="color:#202020; font-family:'typo' ;font-size:16px" class="title1">+62 xxxxxxxxx</h4>
-		<h4 style="font-family:'typo' ">danyparadana@gmail.com</h4>
+		<h4 style="font-family:'typo' ">danyparadanagmail.com</h4>
 		<h4 style="font-family:'typo' ">Universitas Negeri Semarang</h4></div></div>
 		</p>
       </div>

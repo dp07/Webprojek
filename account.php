@@ -15,7 +15,7 @@
 <!--alert message-->
 <?php 
   if(@$_GET['w']){
-    echo'<script>alert("'.@$_GET['w'].'");</script>';
+    echo'<script>alert("'.$_GET['w'].'");</script>';
   }
 ?>
 <!--alert message end-->
@@ -69,9 +69,9 @@
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
         <ul class="nav navbar-nav">
-            <li <?php if(@$_GET['q']==1) echo'class="active"'; ?> ><a href="account.php?q=1"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>&nbsp;Home<span class="sr-only">(current)</span></a></li>
-            <li <?php if(@$_GET['q']==2) echo'class="active"'; ?>><a href="account.php?q=2"><span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span>&nbsp;History</a></li>
-		        <li <?php if(@$_GET['q']==3) echo'class="active"'; ?>><a href="account.php?q=3"><span class="glyphicon glyphicon-stats" aria-hidden="true"></span>&nbsp;Ranking</a></li>
+            <li <?php if($_GET['q']==1) echo'class="active"'; ?> ><a href="account.php?q=1"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>&nbsp;Home<span class="sr-only">(current)</span></a></li>
+            <li <?php if($_GET['q']==2) echo'class="active"'; ?>><a href="account.php?q=2"><span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span>&nbsp;History</a></li>
+		        <li <?php if($_GET['q']==3) echo'class="active"'; ?>><a href="account.php?q=3"><span class="glyphicon glyphicon-stats" aria-hidden="true"></span>&nbsp;Ranking</a></li>
 		    </ul>
             
     <form class="navbar-form navbar-left" role="search">
@@ -90,7 +90,7 @@
         <div class="col-md-12">
 
 <!--home start-->
-<?php if(@$_GET['q']==1) {
+<?php if($_GET['q']==1) {
     $result = mysqli_query($con,"SELECT * FROM quiz ORDER BY date DESC") or die('Error');
     echo  '<div class="panel"><div class="table-responsive"><table class="table table-striped title1">
     <tr><td><b>S.N.</b></td><td><b>Topic</b></td><td><b>Total question</b></td><td><b>Marks</b></td><td><b>Time limit</b></td><td></td></tr>';
@@ -142,10 +142,10 @@ var countdownTimer = setInterval('secondPassed()', 1000);
 
 <!--quiz start-->
 <?php
-    if(@$_GET['q']== 'quiz' && @$_GET['step']== 2) {
-    $eid=@$_GET['eid'];
-    $sn=@$_GET['n'];
-    $total=@$_GET['t'];
+    if($_GET['q']== 'quiz' && $_GET['step']== 2) {
+    $eid=$_GET['eid'];
+    $sn=$_GET['n'];
+    $total=$_GET['t'];
     $q=mysqli_query($con,"SELECT * FROM questions WHERE eid='$eid' AND sn='$sn' " );
     echo '<div class="panel" style="margin:5%">';
     while($row=mysqli_fetch_array($q) ){
@@ -171,8 +171,8 @@ var countdownTimer = setInterval('secondPassed()', 1000);
 
 
 //result display
-    if(@$_GET['q']== 'result' && @$_GET['eid']){
-      $eid=@$_GET['eid'];
+    if($_GET['q']== 'result' && $_GET['eid']){
+      $eid=$_GET['eid'];
 
       $q=mysqli_query($con,"SELECT * FROM history WHERE eid='$eid' AND email='$email' " )or die('Error157');
       echo  '<div class="panel"><center><h1 class="title" style="color:#660033">Result</h1><center><br /><table class="table table-striped title1" style="font-size:20px;font-weight:1000;">';
@@ -200,7 +200,7 @@ var countdownTimer = setInterval('secondPassed()', 1000);
 
 <?php
 //history start
-    if(@$_GET['q']== 2){
+    if($_GET['q']== 2){
     $q=mysqli_query($con,"SELECT * FROM history WHERE email='$email' ORDER BY date DESC " )or die('Error197');
     echo  '<div class="panel title">
           <table class="table table-striped title1">
@@ -225,7 +225,7 @@ var countdownTimer = setInterval('secondPassed()', 1000);
   }
 
 //ranking start
-    if(@$_GET['q']== 3){
+    if($_GET['q']== 3){
         $q=mysqli_query($con,"SELECT * FROM rank  ORDER BY score DESC " )or die('Error223');
         echo  '<div class="panel title"><div class="table-responsive">
               <table class="table table-striped title1" >
