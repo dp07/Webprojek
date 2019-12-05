@@ -74,7 +74,7 @@ echo '<span class="pull-right top title1" ><span class="log1"><span class="glyph
         <li <?php if($_GET['q']==0) echo'class="active"'; ?>><a href="dash.php?q=0">Home<span class="sr-only">(current)</span></a></li>
         <li <?php if(@$_GET['q']==1) echo'class="active"'; ?>><a href="dash.php?q=1">User</a></li>
 		<li <?php if(@$_GET['q']==2) echo'class="active"'; ?>><a href="dash.php?q=2">Ranking</a></li>
-		<li <?php if(@$_GET['q']==3) echo'class="active"'; ?>><a href="dash.php?q=3">Pesan</a></li>
+		<li <?php if(@$_GET['q']==3) echo'class="active"'; ?>><a href="dash.php?q=3"></a></li>
         <li class="dropdown <?php if(@$_GET['q']==4 || @$_GET['q']==5) echo'active"'; ?>">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Quiz<span class="caret"></span></a>
           <ul class="dropdown-menu">
@@ -82,8 +82,6 @@ echo '<span class="pull-right top title1" ><span class="log1"><span class="glyph
             <li><a href="dash.php?q=5">Remove Quiz</a></li>
 			
           </ul>
-        </li><li class="pull-right"> <a href="logout.php?q=account.php"><span class="glyphicon glyphicon-log-out" aria-hidden="true"></span>&nbsp;&nbsp;&nbsp;&nbsp;Signout</a></li>
-		
       </ul>
           </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
@@ -98,7 +96,7 @@ echo '<span class="pull-right top title1" ><span class="log1"><span class="glyph
 
 $result = mysqli_query($con,"SELECT * FROM quiz ORDER BY date DESC") or die('Error');
 echo  '<div class="panel"><div class="table-responsive"><table class="table table-striped title1">
-<tr><td><b>S.N.</b></td><td><b>Topic</b></td><td><b>Total question</b></td><td><b>Marks</b></td><td><b>Time limit</b></td><td></td></tr>';
+<tr><td><b>S.N.</b></td><td><b>Topic</b></td><td><b>Total question</b></td><td><b>Max Point</b></td><td><b>Time limit</b></td><td></td></tr>';
 $c=1;
 while($row = mysqli_fetch_array($result)) {
 	$title = $row['title'];
@@ -290,7 +288,7 @@ echo '<div class="panel"<a title="Back to Archive" href="update.php?q1=2"><b><sp
 if(@$_GET['q']==4 && !(@$_GET['step']) ) {
 echo ' 
 <div class="row">
-<span class="title1" style="margin-left:40%;font-size:30px;"><b>Enter Quiz Details</b></span><br /><br />
+<span class="title1" style="margin-left:40%;font-size:30px;"><b>Masukan Detail Quiz</b></span><br /><br />
  <div class="col-md-3"></div><div class="col-md-6">   <form class="form-horizontal title1" name="form" action="update.php?q=addquiz"  method="POST">
 <fieldset>
 
@@ -299,7 +297,7 @@ echo '
 <div class="form-group">
   <label class="col-md-12 control-label" for="name"></label>  
   <div class="col-md-12">
-  <input id="name" name="name" placeholder="Enter Quiz title" class="form-control input-md" type="text">
+  <input id="name" name="name" placeholder="Masukan judul quiz" class="form-control input-md" type="text">
     
   </div>
 </div>
@@ -310,7 +308,7 @@ echo '
 <div class="form-group">
   <label class="col-md-12 control-label" for="total"></label>  
   <div class="col-md-12">
-  <input id="total" name="total" placeholder="Enter total number of questions" class="form-control input-md" type="number">
+  <input id="total" name="total" placeholder="Masukan jumlah quiz" class="form-control input-md" type="number">
     
   </div>
 </div>
@@ -319,7 +317,7 @@ echo '
 <div class="form-group">
   <label class="col-md-12 control-label" for="right"></label>  
   <div class="col-md-12">
-  <input id="right" name="right" placeholder="Enter marks on right answer" class="form-control input-md" min="0" type="number">
+  <input id="right" name="right" placeholder="Masukan point untuk jawaban benar" class="form-control input-md" min="0" type="number">
     
   </div>
 </div>
@@ -328,7 +326,7 @@ echo '
 <div class="form-group">
   <label class="col-md-12 control-label" for="wrong"></label>  
   <div class="col-md-12">
-  <input id="wrong" name="wrong" placeholder="Enter minus marks on wrong answer without sign" class="form-control input-md" min="0" type="number">
+  <input id="wrong" name="wrong" placeholder="Masukan minus point untuk jawaban salah" class="form-control input-md" min="0" type="number">
     
   </div>
 </div>
@@ -337,7 +335,7 @@ echo '
 <div class="form-group">
   <label class="col-md-12 control-label" for="time"></label>  
   <div class="col-md-12">
-  <input id="time" name="time" placeholder="Enter time limit for test in minute" class="form-control input-md" min="1" type="number">
+  <input id="time" name="time" placeholder="Masukan lama waktu mengerjakan" class="form-control input-md" min="1" type="number">
     
   </div>
 </div>
@@ -346,7 +344,7 @@ echo '
 <div class="form-group">
   <label class="col-md-12 control-label" for="tag"></label>  
   <div class="col-md-12">
-  <input id="tag" name="tag" placeholder="Enter #tag which is used for searching" class="form-control input-md" type="text">
+  <input id="tag" name="tag" placeholder="Masukan #tag untuk melakukan pencarian" class="form-control input-md" type="text">
     
   </div>
 </div>

@@ -6,10 +6,10 @@
 
 <title>TEST YOUR SKILL </title>
 <link  rel="stylesheet" href="css/bootstrap.min.css"/>
- <link  rel="stylesheet" href="css/bootstrap-theme.min.css"/>    
- <link rel="stylesheet" href="css/main.css">
- <link  rel="stylesheet" href="css/font.css">
- <script src="js/jquery.js" type="text/javascript"></script>
+<link  rel="stylesheet" href="css/bootstrap-theme.min.css"/>    
+<link rel="stylesheet" href="css/main.css">
+<link  rel="stylesheet" href="css/font.css">
+<script src="js/jquery.js" type="text/javascript"></script>
 
  
   <script src="js/bootstrap.min.js"  type="text/javascript"></script>
@@ -71,17 +71,20 @@ echo '<span class="pull-right top title1" ><span class="log1"><span class="glyph
 		<li <?php if(@$_GET['q']==3) echo'class="active"'; ?>><a href="account.php?q=3"><span class="glyphicon glyphicon-stats" aria-hidden="true"></span>&nbsp;Ranking</a></li>
 		<li class="pull-right"> <a href="logout.php?q=account.php"><span class="glyphicon glyphicon-log-out" aria-hidden="true"></span>&nbsp;&nbsp;&nbsp;&nbsp;Signout</a></li>
 		</ul>
-            <form class="navbar-form navbar-left" role="search">
+            
+    <form class="navbar-form navbar-left" role="search">
         <div class="form-group">
           <input type="text" class="form-control" placeholder="Enter tag ">
         </div>
-        <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-search" aria-hidden="true"></span>&nbsp;Search</button>
-      </form>
-      </div><!-- /.navbar-collapse -->
-  </div><!-- /.container-fluid -->
-</nav><!--navigation menu closed-->
-<div class="container"><!--container start-->
-<div class="row">
+            <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-search" aria-hidden="true"></span>&nbsp;Search
+            </button>
+    </form>
+
+          </div><!-- /.navbar-collapse -->
+         </div><!-- /.container-fluid -->
+        </nav><!--navigation menu closed-->
+        <div class="container"><!--container start-->
+        <div class="row">
 <div class="col-md-12">
 
 <!--home start-->
